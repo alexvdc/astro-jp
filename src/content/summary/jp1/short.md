@@ -1,0 +1,3 @@
+*John Hammond*, le PDG de l'entreprise InGen, travaille à la création d'un parc d'attractions sur Isla Nublar, une île qu'il possède au large du Costa Rica.
+
+À la suite d'un incident causant la mort d'un employé, la famille de ce dernier intente des poursuites contre InGen. *John Hammond* est alors pressé par ses actionnaires d'amener une équipe d'experts avant l'ouverture du parc, afin qu'ils puissent s'assurer de la sécurité des lieux. Hammond invite donc sur son île les docteurs *Alan Grant* et *Ellie Sattler*, paléontologues renommés, le mathématicien spécialisé dans la théorie du chaos *Ian Malcolm*, ainsi que l'avocat représentant ses actionnaires, *Donald Gennaro*.

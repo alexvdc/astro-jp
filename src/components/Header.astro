@@ -1,0 +1,35 @@
+<header class="header">
+    <div class="header__logo">
+        <img src="/favicon.svg" alt="logo">
+    </div>
+    <nav>
+        <ul>
+            <li><a href="/">Accueil</a></li>
+            <li><a href="/jurassic-park-I">Jurassic Park I</a></li>
+            <li><a href="/jurassic-park-II">Jurassic Park II</a></li>
+            <li><a href="/jurassic-park-III">Jurassic Park III</a></li>
+        </ul>
+    </nav>
+</header>
+
+<style lang="scss">
+    .header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        &__logo {
+            width: 44px;
+        }
+
+        ul {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            li {
+                margin: 0 1rem;
+            }
+        }
+    }
+</style>
