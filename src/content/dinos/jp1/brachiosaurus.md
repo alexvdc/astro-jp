@@ -1,6 +1,6 @@
 ---
 name: Brachiosaurus
-image: images/dinosaures-js1/brachiosaurus.webp
+image: /images/dinosaures-js1/brachiosaurus.webp
 ---
 
 Ils ont été créés dans une enceinte d'InGen sur Isla Sorna et ont été élevés et nourris par les savants en laboratoires.
