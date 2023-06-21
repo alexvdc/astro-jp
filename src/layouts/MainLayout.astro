@@ -1,5 +1,5 @@
 ---
-import Header from '../components/Header.astro';
+import Navigation from '../components/Navigation.astro';
 import '../style/global.css'
 const { pageTitle } = Astro.props;
 ---
@@ -14,8 +14,8 @@ const { pageTitle } = Astro.props;
   </head>
   <body>
 	<main>
-      <Header />
-      <h1>Jurassic Park</h1>
+      <Navigation />
+      <!-- <h1>Jurassic Park</h1> -->
       <slot>Default content.</slot>
     </main>
   </body>

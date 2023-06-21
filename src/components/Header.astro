@@ -1,35 +1,33 @@
+---
+const { title, date, image } = Astro.props;
+
+const imageBg = `url('${image}')`
+
+console.log(imageBg);
+---
+
 <header class="header">
-    <div class="header__logo">
-        <img src="/favicon.svg" alt="logo">
-    </div>
-    <nav>
-        <ul>
-            <li><a href="/">Accueil</a></li>
-            <li><a href="/jurassic-park-I">Jurassic Park I</a></li>
-            <li><a href="/jurassic-park-II">Jurassic Park II</a></li>
-            <li><a href="/jurassic-park-III">Jurassic Park III</a></li>
-        </ul>
-    </nav>
+  <div class="header__infos">
+    <h1>{title}</h1>
+    <h2>({date})</h2>
+  </div>
 </header>
 
-<style lang="scss">
-    .header {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-
-        &__logo {
-            width: 44px;
-        }
-
-        ul {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-
-            li {
-                margin: 0 1rem;
-            }
-        }
-    }
+<style define:vars={{imageBg}}>
+  .header {
+    position: relative;
+    background-image: var(--imageBg);
+    background-size: cover;
+    background-position: center;
+    background-attachment:fixed;
+    height: 100vh;
+  }
+  .header__infos {
+    position: absolute;
+    text-align: center;
+    top: 25%;
+    left: 50%;
+    transform: translate(-50%, -25%);
+    color: #f1f1f1
+  }
 </style>

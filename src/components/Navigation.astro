@@ -1,0 +1,72 @@
+<div class="navigation">
+  <div class="navigation__content">
+    <div class="navigation__logo">
+      <a href="/"><img src="/images/jurassic-park-1-button.svg" alt="logo" /></a>
+    </div>
+    <nav>
+      <ul>
+        <!-- <li><a href="/">Accueil</a></li> -->
+        <li><a href="/jurassic-park-I">Jurassic Park I</a></li>
+        <li><a href="/jurassic-park-II">Jurassic Park II</a></li>
+        <li><a href="/jurassic-park-III">Jurassic Park III</a></li>
+      </ul>
+    </nav>
+  </div>
+</div>
+
+<style lang="scss">
+  .navigation {
+    background-color: rgba(8, 40, 19, 0.416);
+    padding: 0.5rem 1rem;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 5;
+    &__logo {
+      width: 56px;
+
+      img {
+        width: 100%;
+      }
+    }
+    &__content {
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      max-width: 1280px;
+    }
+
+    ul {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      li {
+        margin: 0 1rem;
+      }
+    }
+    &::after {
+      content: "";
+      position: absolute;
+      width: 90%;
+      display: inline-block;
+      height: 2px;
+      background-color: #f1f1f1c8;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+
+    a {
+      color: #f1f1f1;
+      display: inline-block;
+      transition: transform 0.15s ease-out;
+      &:hover {
+        color: #ef45d5;
+        transform: scale(1.1);
+      }
+    }
+  }
+</style>

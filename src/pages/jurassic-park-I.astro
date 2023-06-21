@@ -1,14 +1,18 @@
 ---
 import Card from "../components/Card.astro";
+import Header from "../components/Header.astro";
 import MainLayout from "../layouts/MainLayout.astro";
 const allCharacters = await Astro.glob("../content/characters/jp1/*.md");
 const allDinos = await Astro.glob("../content/dinos/jp1/*.md");
 import * as summaryStory from "../content/summary/jp1/short.md";
 import * as summaryStoryExtend from "../content/summary/jp1/extend.md";
+
+import bgImg from "/images/bg/jp1.webp";
 ---
 
 <MainLayout pageTitle={"Jurassic Park I"}>
-  <section class="summary-container dark">
+  <Header title={"Jurassic Park I"} date={"1993"} image={bgImg} />
+  <section class="summary-container dark text">
     <div
       class="summary-container__content"
       set:html={summaryStory.compiledContent()}
@@ -17,7 +21,10 @@ import * as summaryStoryExtend from "../content/summary/jp1/extend.md";
       class="summary-container__content--extend"
       set:html={summaryStoryExtend.compiledContent()}
     />
-    <button class="btn" id="summaryExtend">+</button>
+    <div class="btn-effect">
+      <span></span>
+      <button class="btn" id="summaryExtend">+</button>
+    </div>
   </section>
 
   <section class="card-container light">
@@ -49,74 +56,67 @@ import * as summaryStoryExtend from "../content/summary/jp1/extend.md";
   </section>
 </MainLayout>
 
-<style>
-  .card {
-    position: relative;
-    width: 225px;
-    height: 300px;
-    background-color: rgb(88, 194, 239);
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-  }
-  img {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 300px;
-    object-fit: cover;
-  }
-
-  .card-container.dark {
-    width: 100%;
-    padding: 4rem 1rem;
-    background-color: rgb(50, 50, 49);
-  }
-  .card-container__content {
-    padding: 2rem 0;
-    margin: 0 auto;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 2rem;
-    justify-content: center;
-    max-width: 1280px;
-    width: 80%;
+<style lang="scss">
+  .card-container {
+    &__content {
+      padding: 2rem 0;
+      margin: 0 auto;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2rem;
+      justify-content: center;
+      max-width: 1280px;
+      width: 80%;
+    }
   }
 
   .summary-container {
     padding: 2rem 0;
+
+    &__content {
+      width: 80%;
+      max-width: 1080px;
+      display: flex;
+      flex-direction: column;
+      margin: 0 auto;
+      gap: 1rem 0;
+
+      &--extend {
+        padding: 2rem 0;
+        margin: 0 auto;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1rem 0rem;
+        justify-content: center;
+        max-width: 1080px;
+        width: 80%;
+        display: none;
+      }
+    }
   }
 
-  .summary-container__content {
-    width: 80%;
-    max-width: 1080px;
-    display: flex;
-    flex-direction: column;
-    margin: 0 auto;
-    gap: 1rem 0;
-  }
-  .summary-container__content--extend {
-    padding: 2rem 0;
-    margin: 0 auto;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 1rem 0rem;
-    justify-content: center;
-    max-width: 1080px;
-    width: 80%;
-    display: none;
-  }
-  .summary-container__content--extend.more {
+  .more {
     display: flex;
   }
-
   .dark {
-    background-color: rgb(50, 50, 49);
+    background-color: #3b3776;
+
     color: #f6f9ea;
   }
 
+  .btn-effect {
+    position: relative;
+    width: 40px;
+    border-radius: 50%;
+    margin-inline: auto;
+    
+    &:hover span {
+      transition: opacity 0.25s ease-in-out;
+      opacity: 1;
+    }
+  }
   .btn {
+    position: relative;
     display: block;
     text-align: center;
     margin: 0rem auto;
@@ -127,18 +127,45 @@ import * as summaryStoryExtend from "../content/summary/jp1/extend.md";
     cursor: pointer;
     margin-top: 1.5rem;
   }
+  span {
+    position: absolute;
+    opacity: 0;
+    width: 60px;
+    height: 30px;
+    background-color: #9ba3d4;
+    border-radius: 0 0 30px 30px;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+
+    &::before {
+      content: "";
+      position: absolute;
+      top: 0%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      background-color: #3b3776;
+    }
+  }
 
   p {
-    font-size: var(--step--2);
+    font-size: --step--2;
   }
 </style>
 
 <script>
   const btnExtend = document.querySelector("#summaryExtend");
-  const summaryExtend = document.querySelector(".summary-container__content--extend");
+  const summaryExtend = document.querySelector(
+    ".summary-container__content--extend"
+  );
   btnExtend.addEventListener("click", () => {
-    summaryExtend.querySelector(".summary-container__content--extend")
+    summaryExtend.querySelector(".summary-container__content--extend");
     summaryExtend.classList.toggle("more");
-    btnExtend.innerHTML === "+" ? btnExtend.innerHTML = "-" : btnExtend.innerHTML = "+";
+    btnExtend.innerHTML === "+"
+      ? (btnExtend.innerHTML = "-")
+      : (btnExtend.innerHTML = "+");
   });
 </script>
