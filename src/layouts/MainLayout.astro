@@ -1,6 +1,7 @@
 ---
-import Navigation from '../components/Navigation.astro';
-import '../style/global.css'
+import Footer from "../components/Footer.astro";
+import Navigation from "../components/Navigation.astro";
+import "../style/global.css";
 const { pageTitle } = Astro.props;
 ---
 
@@ -13,10 +14,11 @@ const { pageTitle } = Astro.props;
     <title>{pageTitle}</title>
   </head>
   <body>
-	<main>
-      <Navigation />
+    <Navigation />
+    <main>
       <!-- <h1>Jurassic Park</h1> -->
       <slot>Default content.</slot>
     </main>
+    <Footer />
   </body>
 </html>

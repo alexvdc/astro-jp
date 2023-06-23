@@ -1,20 +1,24 @@
 ---
+import Section from "../components/Section.astro";
 import MainLayout from "../layouts/MainLayout.astro";
-import imgBg from '/images/main-bg.webp'
 
+const allSections = await Astro.glob("../content/sections/*.md");
 ---
 
 <MainLayout pageTitle="Accueil">
-  <section class="accueil">
+  <!-- <section class="accueil">
 
-  </section>
-</MainLayout>
-<style>
-  .accueil {
-    width: 100%;
-    height: 100vh;
-    background-image: url('/images/main-bg.webp');
-    background-size: cover;
-    background-position: center;
+  </section> -->
+
+  {
+    allSections.map((s) => (
+      <Section
+        imageBg={s.frontmatter.imageBg}
+        text={s.compiledContent()}
+        url={s.frontmatter.url}
+        videoUrl={s.frontmatter.videoUrl}
+      />
+    ))
   }
-</style>
+</MainLayout>
+<style></style>

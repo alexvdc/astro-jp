@@ -20,8 +20,14 @@
   box-sizing: border-box;
 }
 
-body {
+html {
   scroll-behavior: smooth;
+  scroll-snap-type: y mandatory;
+  scrollbar-color: #1ba1b3 transparent;
+
+  scrollbar-width:thin;
+}
+body {
   background-color: #ddf3da;
 }
 
@@ -49,5 +55,9 @@ h2 {
   font-size: var(--step-3);
 }
 h3 {
-  font-size: var(--step-1);
+  font-size: var(--step-0);
+}
+
+p {
+  line-height: 1.6;
 }
