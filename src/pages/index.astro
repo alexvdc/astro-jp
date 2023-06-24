@@ -17,6 +17,7 @@ const allSections = await Astro.glob("../content/sections/*.md");
         text={s.compiledContent()}
         url={s.frontmatter.url}
         videoUrl={s.frontmatter.videoUrl}
+        videoID={s.frontmatter.videoID}
       />
     ))
   }

@@ -1,49 +1,58 @@
 ---
-const { srcVideo } = Astro.props;
+const { srcVideo, videoID } = Astro.props;
 ---
 
 <div class="container">
-<h3 class="container__title">Bande &nbsp; annonce</h3>
-<iframe
-  class="container__video"
-  src={srcVideo}
-  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-  allowfullscreen
-  loading="lazy"
->
-</iframe>
+  <h3 class="container__title">Bande &nbsp; annonce</h3>
+  <lite-youtube class="container__video"   videoid={videoID}
+  >
+    <a href={srcVideo}
+      >Watch on YouTube"</a
+    >
+  </lite-youtube>
 </div>
 
 <style lang="scss">
-    .container {
-        position: relative;
-        display: flex;
-        // left: 15rem;
-        // border: 2px solid white;
+  .container {
+    position: relative;
+    display: flex;
+    // left: 15rem;
+    // border: 2px solid white;
 
-
-        &__title {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #f1f1f1;
-            text-transform: uppercase;
-            word-break:break-all;
-            width: 1rem;
-            padding: 0.5rem 1rem;
-            margin-inline: auto;
-            background-color: rgba(0, 0, 0, 0.308);
-            border: 2px solid white;
-
-        }
-        &__video {
-          border: 2px solid white;
-          width: 600px;
-          aspect-ratio: 1/0.5;
-      
-          @media screen and (max-width: 800px) {
-            // display: none;
-          }
-        }
+    &__title {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #f1f1f1;
+      text-transform: uppercase;
+      word-break: break-all;
+      width: 1rem;
+      padding: 0.5rem 1rem;
+      margin-inline: auto;
+      background-color: rgba(0, 0, 0, 0.308);
+      border: 2px solid white;
     }
+    &__video {
+      border: 2px solid white;
+      width: 600px;
+      aspect-ratio: 16 / 9;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      gap: 1em;
+      padding: 1em;
+      background-color: #000;
+      color: #fff;
+      text-decoration: none;
+      @media screen and (max-width: 800px) {
+        // display: none;
+      }
+    }
+  }
 </style>
+
+<script
+  type="module"
+  src="https://cdn.jsdelivr.net/npm/@justinribeiro/lite-youtube@1.5.0/lite-youtube.js"
+></script>

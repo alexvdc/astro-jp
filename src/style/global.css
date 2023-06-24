@@ -22,6 +22,7 @@
 
 html {
   scroll-behavior: smooth;
+  -ms-scroll-snap-type: y mandatory;
   scroll-snap-type: y mandatory;
   scrollbar-color: #1ba1b3 transparent;
 

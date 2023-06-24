@@ -1,13 +1,15 @@
 ---
 import Video from "./Video.astro";
-const { text, imageBg, url, videoUrl } = Astro.props;
+const { text, imageBg, url, videoUrl, videoID } = Astro.props;
 const imageURL = `url('${imageBg}')`;
+console.log(videoID);
+
 ---
 
 <section class="container">
   <div class:list={["container__content", { summary: url }]} set:html={text} />
   {url && <a href={url}>En savoir plus !</a>}
-  {videoUrl && <Video srcVideo={videoUrl} />}
+  {videoUrl && <Video srcVideo={videoUrl} videoID={videoID} />}
 </section>
 
 <style lang="scss" define:vars={{ imageURL }}>
