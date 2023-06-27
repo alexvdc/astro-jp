@@ -1,0 +1,37 @@
+---
+import Card from "./Card.astro";
+const {title, items, theme} = Astro.props
+---
+
+<section class={`card-container ${theme}`}>
+  <h2>{title}</h2>
+  <div class="card-container__content">
+    {
+      items.map((i) => (
+      <Card
+            name={i.frontmatter.name}
+            image={i.frontmatter.image}
+            description={i.compiledContent()}
+            theme="light"
+            class="off"
+          />
+      ))
+    }
+  </div>
+</section>
+
+<style lang="scss">
+    .card-container {
+    padding: 1.5rem 0;
+    &__content {
+      padding: 2rem 0;
+      margin: 0 auto;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2rem;
+      justify-content: center;
+      max-width: 1280px;
+      width: 80%;
+    }
+  }
+</style>

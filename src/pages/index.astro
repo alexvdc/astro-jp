@@ -6,10 +6,6 @@ const allSections = await Astro.glob("../content/sections/*.md");
 ---
 
 <MainLayout pageTitle="Accueil">
-  <!-- <section class="accueil">
-
-  </section> -->
-
   {
     allSections.map((s) => (
       <Section
@@ -22,4 +18,3 @@ const allSections = await Astro.glob("../content/sections/*.md");
     ))
   }
 </MainLayout>
-<style></style>

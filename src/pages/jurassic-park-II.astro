@@ -1,174 +1,37 @@
 ---
-import Card from "../components/Card.astro";
-import Header from "../components/Header.astro";
+// Import components
 import MainLayout from "../layouts/MainLayout.astro";
-const allCharacters = await Astro.glob("../content/characters/jp2/*.md");
-const allDinos = await Astro.glob("../content/dinos/jp2/*.md");
+import Header from "../components/Header.astro";
+import Summary from "../components/Summary.astro";
+import Container from "../components/Container.astro";
+// For this page
+import bgImg from "/images/bg/jp2.webp";
 import * as summaryStory from "../content/summary/jp2/short.md";
 import * as summaryStoryExtend from "../content/summary/jp2/extend.md";
-
-import bgImg from "/images/bg/jp2.webp";
+const allCharacters = await Astro.glob("../content/characters/jp2/*.md");
+const allDinos = await Astro.glob("../content/dinos/jp2/*.md");
 ---
 
 <MainLayout pageTitle={"Jurassic Park II"}>
-  <Header title={"Jurassic Park : Le Monde Perdu"} date={"1997"} image={bgImg} />
-  <section class="summary-container dark text">
-    <div
-      class="summary-container__content"
-      set:html={summaryStory.compiledContent()}
+  <Header 
+    title={"Jurassic Park : Le Monde Perdu"} 
+    date={"1997"} 
+    image={bgImg} 
     />
-    <div
-      class="summary-container__content--extend"
-      set:html={summaryStoryExtend.compiledContent()}
-    />
-    <div class="btn-effect">
-      <span></span>
-      <button class="btn" id="summaryExtend">+</button>
-    </div>
-  </section>
+  
+  <Summary
+    summaryStory={summaryStory}
+    summaryStoryExtend={summaryStoryExtend}
+  />
 
-  <section class="card-container light">
-    <div class="card-container__content">
-      {
-        allCharacters.map((c) => (
-          <Card
-            name={c.frontmatter.name}
-            image={c.frontmatter.image}
-            description={c.compiledContent()}
-          />
-        ))
-      }
-    </div>
-  </section>
-
-  <section class="card-container dark">
-    <div class="card-container__content">
-      {
-        allDinos.map((d) => (
-          <Card
-            name={d.frontmatter.name}
-            image={d.frontmatter.image}
-            description={d.compiledContent()}
-          />
-        ))
-      }
-    </div>
-  </section>
+  <Container
+    title="Gallerie des personnages"
+    items={allCharacters}
+    theme="light"
+  />
+  <Container 
+    title="Gallerie des dinosaures" 
+    items={allDinos} 
+    theme="dark" 
+  />
 </MainLayout>
-
-<style lang="scss">
-  .card-container {
-    &__content {
-      padding: 2rem 0;
-      margin: 0 auto;
-      display: flex;
-      flex-wrap: wrap;
-      gap: 2rem;
-      justify-content: center;
-      max-width: 1280px;
-      width: 80%;
-    }
-  }
-
-  .summary-container {
-    padding: 2rem 0;
-
-    &__content {
-      width: 80%;
-      max-width: 1080px;
-      display: flex;
-      flex-direction: column;
-      margin: 0 auto;
-      gap: 1rem 0;
-
-      &--extend {
-        padding: 2rem 0;
-        margin: 0 auto;
-        display: flex;
-        flex-wrap: wrap;
-        gap: 1rem 0rem;
-        justify-content: center;
-        max-width: 1080px;
-        width: 80%;
-        display: none;
-      }
-    }
-  }
-
-  .more {
-    display: flex;
-  }
-  .dark {
-    background-color: #3b3776;
-    background: url('/images/pattern.svg');
-    background-position: center;
-    // background-size:cover;    
-
-    color: #f6f9ea;
-  }
-
-  .btn-effect {
-    position: relative;
-    width: 40px;
-    border-radius: 50%;
-    margin-inline: auto;
-    
-    &:hover span {
-      transition: opacity 0.25s ease-in-out;
-      opacity: 1;
-    }
-  }
-  .btn {
-    position: relative;
-    display: block;
-    text-align: center;
-    margin: 0rem auto;
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    border: none;
-    cursor: pointer;
-    margin-top: 1.5rem;
-  }
-  span {
-    position: absolute;
-    opacity: 0;
-    width: 60px;
-    height: 30px;
-    background-color: #9ba3d4;
-    border-radius: 0 0 30px 30px;
-    bottom: -10px;
-    left: 50%;
-    transform: translateX(-50%);
-
-    &::before {
-      content: "";
-      position: absolute;
-      top: 0%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      width: 50px;
-      height: 50px;
-      border-radius: 50%;
-      background-color: #3b3776;
-    }
-  }
-
-  p {
-    font-size: --step--2;
-  }
-</style>
-
-<script>
-  const btnExtend = document.querySelector("#summaryExtend");
-  const summaryExtend = document.querySelector(
-    ".summary-container__content--extend"
-  );
-  btnExtend.addEventListener("click", () => {
-    summaryExtend.querySelector(".summary-container__content--extend");
-    summaryExtend.classList.toggle("more");
-    btnExtend.innerHTML === "+"
-      ? (btnExtend.innerHTML = "-")
-      : (btnExtend.innerHTML = "+");
-  });
-</script>

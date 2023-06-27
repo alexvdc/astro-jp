@@ -1,0 +1,125 @@
+---
+const { summaryStory, summaryStoryExtend } = Astro.props;
+---
+
+<section class="summary-container dark">
+  <h2 class="summary-container__title"
+  >Résumé du film</h2>
+  <div
+    class="summary-container__content"
+    set:html={summaryStory.compiledContent()}
+  />
+  <div
+    class="summary-container__content--extend"
+    set:html={summaryStoryExtend.compiledContent()}
+  />
+  <div class="btn">
+    <span class="btn__effect"></span>
+    <button class="btn__action" id="summaryExtend">+</button>
+  </div>
+</section>
+
+<style lang="scss">
+  .summary-container {
+    padding: 2rem 0;
+
+    &__title {
+      text-align: center;
+      padding-bottom: 1.5rem;
+    }
+
+    &__content {
+      width: 80%;
+      max-width: 1080px;
+      display: flex;
+      flex-direction: column;
+      margin: 0 auto;
+      gap: 1rem 0;
+
+      &--extend {
+        padding: 2rem 0;
+        margin: 0 auto;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1rem 0rem;
+        justify-content: center;
+        max-width: 1080px;
+        width: 80%;
+        display: none;
+      }
+    }
+  }
+
+  .more {
+    display: flex;
+  }
+
+  .btn {
+    position: relative;
+    width: 40px;
+    border-radius: 50%;
+    margin-inline: auto;
+    &:hover span {
+      transition: opacity 0.25s ease-in-out;
+      opacity: 1;
+    }
+    &__action {
+      position: relative;
+      text-align: center;
+      margin: 0rem auto;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      border: none;
+      cursor: pointer;
+      margin-top: 1.5rem;
+      background-color: #c8a48c;
+      transition: filter 0.15s ease-out;
+      padding-bottom: 3px;
+      &:hover {
+        filter: brightness(80%);
+      }
+    }
+    &__effect {
+      position: absolute;
+      opacity: 0;
+      width: 60px;
+      height: 30px;
+      background-color: #9ba3d4;
+      border-radius: 0 0 30px 30px;
+      bottom: -10px;
+      left: 50%;
+      transform: translateX(-50%);
+
+      &::before {
+        content: "";
+        position: absolute;
+        top: 0%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        background-color: #3b3776;
+      }
+    }
+  }
+
+  p {
+    font-size: --step--2;
+  }
+</style>
+
+<script>
+  const btnExtend = document.querySelector("#summaryExtend");
+  const summaryExtend = document.querySelector(
+    ".summary-container__content--extend"
+  );
+  btnExtend.addEventListener("click", () => {
+    summaryExtend.querySelector(".summary-container__content--extend");
+    summaryExtend.classList.toggle("more");
+    btnExtend.innerHTML === "+"
+      ? (btnExtend.innerHTML = "-")
+      : (btnExtend.innerHTML = "+");
+  });
+</script>
