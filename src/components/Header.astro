@@ -1,6 +1,6 @@
 ---
 const { title, date, image } = Astro.props;
-const imageBg = `url('${image}')`
+const imageBg = `url('${image}')`;
 ---
 
 <header class="header">
@@ -10,13 +10,13 @@ const imageBg = `url('${image}')`
   </div>
 </header>
 
-<style define:vars={{imageBg}}>
+<style define:vars={{ imageBg }}>
   .header {
     position: relative;
     background-image: var(--imageBg);
     background-size: cover;
     background-position: center;
-    background-attachment:fixed;
+    background-attachment: fixed;
     height: 100vh;
   }
   .header__infos {
@@ -26,10 +26,16 @@ const imageBg = `url('${image}')`
     top: 25%;
     left: 50%;
     transform: translate(-50%, -25%);
-    color: #f1f1f1;
-    background: radial-gradient(rgb(254, 240, 138), rgb(253, 224, 71), rgb(250, 204, 21));
+  }
+  h1,
+  h2 {
+    background: radial-gradient(
+      var(--yellow),
+      rgb(253, 224, 71),
+      rgb(250, 204, 21)
+    );
     background-clip: text;
     -webkit-background-clip: text;
     color: transparent;
-    }
+  }
 </style>

@@ -17,13 +17,11 @@ const allDinos = await Astro.glob("../content/dinos/jp2/*.md");
     title={"Jurassic Park : Le Monde Perdu"} 
     date={"1997"} 
     image={bgImg} 
-    />
-  
+  />
   <Summary
     summaryStory={summaryStory}
     summaryStoryExtend={summaryStoryExtend}
   />
-
   <Container
     title="Gallerie des personnages"
     items={allCharacters}

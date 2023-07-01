@@ -2,85 +2,103 @@
 import Video from "./Video.astro";
 const { text, imageBg, url, videoUrl, videoID } = Astro.props;
 const imageURL = `url('${imageBg}')`;
-console.log(videoID);
 
+const classes = url ? "summary" : "container";
+const content = url ? "summary__content" : "container__content";
 ---
 
-<section class="container">
-  <div class:list={["container__content", { summary: url }]} set:html={text} />
-  {url && <a href={url}>En savoir plus !</a>}
+<section class={classes}>
+  <div class={content} set:html={text}>
+    {url && <a href={url}>En savoir plus !</a>}
+  </div>
   {videoUrl && <Video srcVideo={videoUrl} videoID={videoID} />}
 </section>
 
 <style lang="scss" define:vars={{ imageURL }}>
-  .container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    font-size: var(--step-0);
-    height: 100vh;
-    width: 100%;
-    background-color: aliceblue;
-    background-image: var(--imageURL);
-    background-size: cover;
-    background-position: center;
-    scroll-snap-align: start;
+  a {
+    position: absolute;
+    bottom: -6rem;
+    left: 50%;
+    translate: -50%;
+    width: fit-content;
+    color: var(--white);
+    font-weight: bold;
+    padding: 1rem 0.5rem;
+    margin: 1rem 0 2rem 0;
+    border-radius: 0.5rem;
+    transition: transform 0.25s ease-in-out;
 
-    &__content:not(.summary) {
-      position: relative;
-      top: 30%;
-      transform: translateY(-30%);
-      display: flex;
-      flex-direction: column;
-      max-width: 900px;
+    &::after {
+      display: none;
+      content: "";
+      position: absolute;
+      left: 50%;
+      translate: -50%;
+      bottom: 0px;
       width: 80%;
-      backdrop-filter: blur(5px);
-      color: #f1f1f1;
-    }
-    &__content.summary {
-      position: relative;
-      left: 5rem;
-      margin-right: auto;
-      max-width: 900px;
-      width: 80%;
-      color: #f1f1f1;
+      height: 0px;
+      transition: position 2s ease-in-out;
+      box-shadow: 0 1px 5px 1px var(--red);
     }
 
-    a {
-      position: relative;
-      width: fit-content;
-      color: #f3de52;
-      // border: 2px solid #9b9b9b;
-      padding: 1rem 0.5rem;
-      margin: 1rem 0 2rem 0;
-      border-radius: 0.5rem;
-      transition: transform 0.25s ease-in-out;
+    &:hover {
+      transform: translateY(-3px);
+      color: var(--red);
 
       &::after {
-        display: none;
-        content: "";
-        position: absolute;
-        left: 0;
+        display: block;
         bottom: 0px;
-        width: 100%;
-        height: 1px;
-        background-image: linear-gradient(
-          to right,
-          transparent,
-          #f3de52b8,
-          transparent
-        );
-        transition: position 2s ease-in-out;
       }
+    }
+  }
 
-      &:hover {
-        transform: translateY(-5px);
+  .container,
+  .summary {
+    position: relative;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    background-image: var(--imageURL);
+    background-position: center;
+    background-size: cover;
+    height: 100vh;
+    color: var(--white);
 
-        &::after {
-          display: block;
-          bottom: -10px;
-        }
+    &__content {
+      position: relative;
+      max-width: 800px;
+      width: 80%;
+      backdrop-filter: blur(3px);
+      background-color: rgba(0, 0, 0, 0.3);
+    }
+  }
+
+  .container {
+    justify-content: center;
+
+    &__content {
+      top: 30%;
+      transform: translateY(-30%);
+      padding: 1rem;
+      backdrop-filter: blur(5px);
+      border-radius: 0.5rem;
+    }
+  }
+
+  .summary {
+    justify-content: space-evenly;
+
+    &__content {
+      left: 5rem;
+      padding: 0.5rem 0 0.5rem 1rem;
+      margin-right: auto;
+      border-top: var(--yellow) solid 2px;
+      border-left: var(--yellow) solid 2px;
+      border-top-left-radius: 0.5rem;
+
+      @media screen and (max-width: 800px) {
+        left: 0;
+        margin-inline: auto;
       }
     }
   }

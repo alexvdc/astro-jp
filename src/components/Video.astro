@@ -15,6 +15,8 @@ const { srcVideo, videoID } = Astro.props;
 <style lang="scss">
   .container {
     position: relative;
+    right: 5rem;
+    margin-left: auto;
     display: flex;
 
     &__title {
@@ -22,18 +24,20 @@ const { srcVideo, videoID } = Astro.props;
       display: flex;
       align-items: center;
       justify-content: center;
-      color: #f1f1f1;
+      color: var(--white);
       text-transform: uppercase;
       word-break: break-all;
       width: 1rem;
       padding: 0.5rem 1rem;
       margin-inline: auto;
       background-color: rgba(0, 0, 0, 0.308);
-      border: 2px solid white;
+      border: 2px solid var(--white);
     }
     &__video {
-      border: 2px solid white;
-      width: 600px;
+      border-top: 2px solid var(--white);
+      border-right: 2px solid var(--white);
+      border-bottom: 2px solid var(--white);
+      width: 700px;
       aspect-ratio: 16 / 9;
       display: flex;
       justify-content: center;
@@ -42,17 +46,22 @@ const { srcVideo, videoID } = Astro.props;
       gap: 1em;
       padding: 1em;
       background-color: #000;
-      color: #fff;
+      color: var(--white);
       text-decoration: none;
     }
 
     @media screen and (max-width: 800px) {
+      right: 0;
+      margin-inline: auto;
+
       &__title {
-        border: 1px solid white;
+        border-color: var(--yellow);
         word-break: normal;
         width: 100%;
+        margin: 0 auto;
+        border-radius: 0.25rem;
         &:hover {
-          background-color: #c8a48c82;
+          background-color: #e5654f99;
         }
       }
       &__video {

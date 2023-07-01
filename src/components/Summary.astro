@@ -22,11 +22,7 @@ const { summaryStory, summaryStoryExtend } = Astro.props;
 <style lang="scss">
   .summary-container {
     padding: 2rem 0;
-
-    &__title {
-      text-align: center;
-      padding-bottom: 1.5rem;
-    }
+    font-size: var(--step-0);
 
     &__content {
       width: 80%;
@@ -73,11 +69,11 @@ const { summaryStory, summaryStoryExtend } = Astro.props;
       border: none;
       cursor: pointer;
       margin-top: 1.5rem;
-      background-color: #c8a48c;
-      transition: filter 0.15s ease-out;
+      background-color: var(--red);
+      transition: opacity 0.2s ease-out;
       padding-bottom: 3px;
       &:hover {
-        filter: brightness(80%);
+        opacity: 0.8;
       }
     }
     &__effect {
@@ -85,7 +81,7 @@ const { summaryStory, summaryStoryExtend } = Astro.props;
       opacity: 0;
       width: 60px;
       height: 30px;
-      background-color: #9ba3d4;
+      background-color: var(--secondary);
       border-radius: 0 0 30px 30px;
       bottom: -10px;
       left: 50%;
@@ -100,26 +96,8 @@ const { summaryStory, summaryStoryExtend } = Astro.props;
         width: 50px;
         height: 50px;
         border-radius: 50%;
-        background-color: #3b3776;
+        background-color: var(--primary);
       }
     }
   }
-
-  p {
-    font-size: --step--2;
-  }
 </style>
-
-<script>
-  const btnExtend = document.querySelector("#summaryExtend");
-  const summaryExtend = document.querySelector(
-    ".summary-container__content--extend"
-  );
-  btnExtend.addEventListener("click", () => {
-    summaryExtend.querySelector(".summary-container__content--extend");
-    summaryExtend.classList.toggle("more");
-    btnExtend.innerHTML === "+"
-      ? (btnExtend.innerHTML = "-")
-      : (btnExtend.innerHTML = "+");
-  });
-</script>
