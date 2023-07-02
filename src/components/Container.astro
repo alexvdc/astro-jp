@@ -1,6 +1,6 @@
 ---
 import Card from "./Card.astro";
-const {title, items, theme} = Astro.props
+const { title, items, theme } = Astro.props;
 ---
 
 <section class={`card-container ${theme}`}>
@@ -8,21 +8,31 @@ const {title, items, theme} = Astro.props
   <div class="card-container__content">
     {
       items.map((i) => (
-      <Card
-            name={i.frontmatter.name}
-            image={i.frontmatter.image}
-            description={i.compiledContent()}
-            theme="light"
-            class="off"
-          />
+        <Card
+          name={i.frontmatter.name}
+          image={i.frontmatter.image}
+          description={i.compiledContent()}
+          theme="light"
+          class="off"
+        />
       ))
     }
   </div>
 </section>
 
 <style lang="scss">
-    .card-container {
+  .card-container {
     padding: 1.5rem 0;
+
+    h2 {
+      width: fit-content;
+      background-color: var(--yellow);
+      color: var(--primary);
+      text-align: center;
+      margin-inline: auto;
+      margin: 0 auto
+    }
+
     &__content {
       padding: 2rem 0;
       margin: 0 auto;

@@ -60,6 +60,7 @@ a {
 }
 .light {
   background-color: var(--secondary);
+  background-image: url('/images/noise-pattern.svg');
 }
 
 .card {
@@ -72,11 +73,12 @@ h1 {
   letter-spacing: 5px;
   line-height: 0.8;
 }
+
 h2 {
   font-size: var(--step-2);
   font-family: "Andika", sans-serif;
   text-align: center;
-  padding-bottom: 1.5rem;
+  padding: 1rem;
   color: var(--white);
 }
 h3 {
