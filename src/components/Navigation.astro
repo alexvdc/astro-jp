@@ -1,17 +1,20 @@
 ---
 import Hamburger from "./Hamburger.astro";
+import NavLink from "./NavLink.astro";
 ---
 
 <div class="navigation">
   <div class="navigation__content">
     <div class="navigation__logo">
-      <a href="/"><img src="/images/logo.svg" alt="logo" /></a>
+      <a href="/">
+        <img src="/images/logo.svg" alt="logo">
+      </a>
     </div>
     <nav>
       <ul class="nav-links">
-        <li><a href="/jurassic-park-I">Jurassic Park I</a></li>
-        <li><a href="/jurassic-park-II">Jurassic Park II</a></li>
-        <li><a href="/jurassic-park-III">Jurassic Park III</a></li>
+        <li><NavLink href="/jurassic-park-I" name="Jurassic Park I" theme="white" /></li>
+        <li><NavLink href="/jurassic-park-II" name="Jurassic Park II" theme="white" /></li>
+        <li><NavLink href="/jurassic-park-III" name="Jurassic Park III" theme="white" /></li>
       </ul>
       <Hamburger />
     </nav>
@@ -21,25 +24,24 @@ import Hamburger from "./Hamburger.astro";
 <style lang="scss">
   .navigation {
     position: fixed;
-    background-color: rgba(8, 40, 19, 0.416);
+    background-color: rgba(8, 40, 19, 0.45);
     padding: 0.25rem 1rem;
-    position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     z-index: 5;
+
     &__logo {
       display: flex;
-      justify-content: center;
       align-items: center;
-      width: 56px;
-      height: 56px;
 
       img {
-        width: 100%;
-        height: 100%;
+        width: 56px;
+        height: 56px;
+        
       }
     }
+
     &__content {
       margin: 0 auto;
       display: flex;
@@ -65,7 +67,7 @@ import Hamburger from "./Hamburger.astro";
       @media screen and (max-width: 636px) {
         visibility: hidden;
         margin-left: -1000px;
-        transition: margin-left 0.25s ease-in-out;
+        // transition: margin-left 0.25s ease-in-out;
       }
     }
     
@@ -104,14 +106,5 @@ import Hamburger from "./Hamburger.astro";
       transform: translateX(-50%);
     }
 
-    a {
-      color: #f1f1f1;
-      display: inline-block;
-      transition: transform 0.15s ease-out;
-      &:hover {
-        color: var(--red);
-        transform: scale(1.1);
-      }
-    }
   }
 </style>

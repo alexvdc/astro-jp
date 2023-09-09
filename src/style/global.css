@@ -25,6 +25,11 @@
   box-sizing: border-box;
 }
 
+::-moz-selection {
+  background-color: var(--yellow);
+  color: var(--primary);
+}
+
 ::selection {
   background-color: var(--yellow);
   color: var(--primary);
@@ -37,7 +42,7 @@ html {
 }
 body {
   background-color: var(--primary);
-  color: var(--white)
+  color: var(--white);
 }
 
 ul {
@@ -78,7 +83,8 @@ h2 {
   font-size: var(--step-2);
   font-family: "Andika", sans-serif;
   text-align: center;
-  padding: 1rem;
+  padding: 0.5rem 1rem;
+  border-radius: 0.25rem;
   color: var(--white);
 }
 h3 {

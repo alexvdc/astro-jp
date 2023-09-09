@@ -1,0 +1,48 @@
+---
+const { name, href, theme } = Astro.props;
+
+const background = `var(--${theme})`;
+const foreground = theme === "white" ? "var(--white)" : "var(--primary)";
+
+const bgActive = "var(--primary)";
+const fgActive = "var(--yellow)";
+
+const isActive = href === Astro.url.pathname
+---
+
+<a
+  href={href}
+  class:list={["btn", {active : isActive}]}
+>
+  {name}
+</a>
+
+<style define:vars={{ background, foreground, bgActive, fgActive }}>
+  a {
+    /* defaults */
+    background: transparent;
+    color: var(--foreground);
+    padding: 0.25em 0.5em;
+    font-weight: bold;
+    text-decoration: none;
+    display: inline-block;
+    transition: all 0.2s ease-in-out;
+    cursor: pointer;
+    margin: 0.5em;
+    /* box-shadow: 0 0 0 0.2em var(--foreground); */
+    transition: all 0.2s ease-in-out;
+  }
+
+  a:hover {
+    color: var(--fgActive);
+  }
+
+  a.active {
+    background: var(--bgActive);
+    color: var(--fgActive);
+    scale: 1.1;
+    border-radius: 0.25em;
+  }
+</style>
+
+

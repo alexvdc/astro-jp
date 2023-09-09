@@ -5,18 +5,19 @@ import Header from "../components/Header.astro";
 import Summary from "../components/Summary.astro";
 import Container from "../components/Container.astro";
 // For this page
-import bgImg from "/images/bg/jp-3.webp";
 import * as summaryStory from "../content/summary/jp3/short.md";
 import * as summaryStoryExtend from "../content/summary/jp3/extend.md";
 const allCharacters = await Astro.glob("../content/characters/jp3/*.md");
 const allDinos = await Astro.glob("../content/dinos/jp3/*.md");
+
+const src = "/images/bg/jp-3.webp";
 ---
 
 <MainLayout pageTitle={"Jurassic Park III"}>
   <Header 
     title={"Jurassic Park III"} 
     date={"2001"} 
-    image={bgImg} 
+    image={src} 
   />
   <Summary
     summaryStory={summaryStory}
